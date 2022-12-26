@@ -48,20 +48,29 @@
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>19</version>
+            <classifier>win</classifier>
         </dependency>
 
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
             <version>19</version>
+            <classifier>win</classifier>
         </dependency>
 
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>19</version>
+            <classifier>win</classifier>
         </dependency>
 
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics </artifactId>
+            <version>19</version>
+            <classifier>win</classifier>
+        </dependency>
 
 
     </dependencies>
@@ -101,7 +110,7 @@
                         <archive>
                             <manifest>
                                 <addClasspath>true</addClasspath>
-                                <mainClass>br.origin.whats.App</mainClass>
+                                <mainClass>com.nixe.pinup.view.home.Main</mainClass>
                             </manifest>
                         </archive>
                     </configuration>
@@ -143,7 +152,7 @@
                         <archive>
                             <manifest>
                                 <mainClass>
-                                    br.origin.whats.App
+                                    com.nixe.pinup.view.home.Main
                                 </mainClass>
                             </manifest>
                         </archive>
@@ -152,6 +161,28 @@
                         </descriptorRefs>
                     </configuration>
                 </plugin>
+
+<!--                <plugin>-->
+<!--                    <groupId>org.apache.maven.plugins</groupId>-->
+<!--                    <artifactId>maven-shade-plugin</artifactId>-->
+<!--                    <version>3.0.0</version>-->
+<!--                    <executions>-->
+<!--                        <execution>-->
+<!--                            <phase>package</phase>-->
+<!--                            <goals>-->
+<!--                                <goal>shade</goal>-->
+<!--                            </goals>-->
+<!--                            <configuration>-->
+<!--                                <transformers>-->
+<!--                                    <transformer-->
+<!--                                            implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">-->
+<!--                                        <mainClass>com.nixe.pinup.view.home.Main</mainClass>-->
+<!--                                    </transformer>-->
+<!--                                </transformers>-->
+<!--                            </configuration>-->
+<!--                        </execution>-->
+<!--                    </executions>-->
+<!--                </plugin>-->
 
                 <plugin>
                     <groupId>org.openjfx</groupId>

@@ -19,4 +19,9 @@ public class TestSocket {
         PrintStream saida = new PrintStream(cliente.getOutputStream());
         saida.println(msg);
     }
+    @Test
+    private void calldog() throws Exception {
+        ListingSOCKET l = new ListingSOCKET(1313);
+        l.audio();
+    }
 }

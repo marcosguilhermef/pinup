@@ -1,10 +1,18 @@
 package com.nixe.pinup.view.home;
+import com.nixe.pinup.socket.CallSOCKET;
 import com.nixe.pinup.socket.ListingSOCKET;
+import com.nixe.pinup.socket.ServiceListing;
+import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import java.io.IOException;
-import javafx.application.Platform;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 public class Home {
 
     @FXML
@@ -21,56 +29,58 @@ public class Home {
     ListingSOCKET server;
     @FXML
     Label status;
+    @FXML
+    TextField port;
+    @FXML
+    TextArea texto;
     public void sair(){
 
     }
     public void abrirConexao(){
-        Task task = new Task<ListingSOCKET>() {
-            @Override
+        Service<ListingSOCKET> task = new ServiceListing(9521);
+        task.start();
 
-            public ListingSOCKET call() throws IOException{
-                try{
-
-                    server = new ListingSOCKET(1724);
-
-                    enabledisableAbrirConexao(true);
-
-                    String status = String.format(
-                            "Conexão estabelecida \n ip: %s:%d",
-                            server.getHostAddress(),
-                            server.getLocalPort()
-                    );
-
-                    System.out.println(status);
-                    statusConection(status);
-
-                    server.start();
-
-                }catch (Exception ex){
-
-                    System.out.println("error: "+ ex.getCause());
-                    System.out.println("error: "+ ex.getMessage());
-                    enabledisableAbrirConexao(false);
-
-                }
-                return server;
+        task.setOnSucceeded((e) -> {
+            enabledisableAbrirConexao(true);
+            try {
+                statusConection(String.format(
+                        "Conexão estabelecida com sucesso:\n"+
+                        "ip: %s:%d\n"+
+                        "ip: " + InetAddress.getLocalHost().getHostAddress()+":%d"
+                ,
+                            task.getValue().getHostAddress(),
+                            task.getValue().getLocalPort(),
+                            task.getValue().getLocalPort()
+                        )
+                );
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+                statusConection(String.format(
+                                "Erro:\n"
+                                ,
+                                "Conexão não pode ser estabelecida.\n",
+                                "As causas podem ser devido a porta, firewall ou permissões necessárias.\n"
+                        )
+                );
             }
+            abrirConexao();
+        } );
 
-            @Override
-            public void succeeded(){
-
-            }
-        };
-
-        System.out.println(task.getState().toString());
-
-        new Thread(task).start();
+        task.setOnFailed((e) -> {
+            statusConection(String.format(
+                            "Erro:\n"
+                            ,
+                            "Conexão não pode ser estabelecida.\n",
+                            "As causas podem ser devido a porta, firewall ou permissões necessárias.\n"
+                    )
+            );
+        });
 
 
     }
 
     public void statusConection(String st){
-        status.setText("st");
+        status.setText(st);
     }
     public void enabledisableAbrirConexao(Boolean b){
         System.out.println("CONEXAO FOI ABERTA COM SUCESSO!");
@@ -97,5 +107,13 @@ public class Home {
         alert.setContentText("Este software não pode ser distribuído comercialmente sem permissão expressa. \n" +
                 "Email: contato@mgjobs.cf");
         alert.show();
+    }
+
+    public void chamar() throws IOException {
+            CallSOCKET client = new CallSOCKET(
+                    ip.getText(),
+                    Integer.valueOf(port.getText())
+            );
+
     }
 }
