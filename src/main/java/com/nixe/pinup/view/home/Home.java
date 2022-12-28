@@ -37,7 +37,7 @@ public class Home {
 
     }
     public void abrirConexao(){
-        Service<ListingSOCKET> task = new ServiceListing(9521);
+        Service<ListingSOCKET> task = new ServiceListing(30010);
         task.start();
 
         task.setOnSucceeded((e) -> {

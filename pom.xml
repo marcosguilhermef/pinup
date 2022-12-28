@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.nize.pinup</groupId>
+    <groupId>com.nixe.pinup</groupId>
     <artifactId>PinUP</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -110,7 +110,7 @@
                         <archive>
                             <manifest>
                                 <addClasspath>true</addClasspath>
-                                <mainClass>com.nixe.pinup.view.home.Main</mainClass>
+                                <mainClass>com.nixe.pinup.Main</mainClass>
                             </manifest>
                         </archive>
                     </configuration>
@@ -152,7 +152,7 @@
                         <archive>
                             <manifest>
                                 <mainClass>
-                                    com.nixe.pinup.view.home.Main
+                                    com.nixe.pinup.Main
                                 </mainClass>
                             </manifest>
                         </archive>
@@ -176,7 +176,7 @@
 <!--                                <transformers>-->
 <!--                                    <transformer-->
 <!--                                            implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">-->
-<!--                                        <mainClass>com.nixe.pinup.view.home.Main</mainClass>-->
+<!--                                        <mainClass>com.nixe.pinup.Main</mainClass>-->
 <!--                                    </transformer>-->
 <!--                                </transformers>-->
 <!--                            </configuration>-->
@@ -189,7 +189,7 @@
                     <artifactId>javafx-maven-plugin</artifactId>
                     <version>0.0.8</version>
                     <configuration>
-                        <mainClass>com.nixe.pinup.view.home.Main</mainClass>
+                        <mainClass>com.nixe.pinup.Main</mainClass>
                     </configuration>
                 </plugin>
 
