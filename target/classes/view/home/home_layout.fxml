@@ -32,21 +32,27 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="205.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nixe.pinup.view.home.Home">
+<VBox prefHeight="229.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nixe.pinup.view.home.Home">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
-        <Menu id="Sair" mnemonicParsing="false" text="Sair" />
-        <Menu mnemonicParsing="false" onShown="#sobre" text="Sobre" />
+        <Menu id="informacoes" mnemonicParsing="false" text="Sobre">
+               <items>
+                  <MenuItem fx:id="sobre" mnemonicParsing="false" text="Informações" />
+                  <MenuItem fx:id="sair" mnemonicParsing="false" text="Sair" />
+               </items></Menu>
       </menus>
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="196.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
@@ -57,10 +63,24 @@
 
             <Label layoutX="14.0" layoutY="63.0" text="ip:[porta]" />
 
-            <Label fx:id="status" layoutX="250.0" layoutY="145.0" text="status conexão" textAlignment="CENTER" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="249.0" />
+            <Label fx:id="status" layoutX="250.0" layoutY="168.0" text="status conexão" textAlignment="CENTER" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="249.0" />
 
-            <Button fx:id="abrir_conexao" layoutX="260.0" layoutY="14.0" mnemonicParsing="false" onAction="#abrirConexao" prefHeight="25.0" prefWidth="121.0" text="Abrir conexão" />
+            <Button fx:id="abrir_conexao" layoutX="154.0" layoutY="14.0" mnemonicParsing="false" onAction="#abrirConexao" prefHeight="25.0" prefWidth="121.0" text="Abrir conexão" />
             <TextField fx:id="port" layoutX="425.0" layoutY="59.0" prefHeight="26.0" prefWidth="53.0" />
+            <ComboBox fx:id="sons" layoutX="71.0" layoutY="99.0" prefHeight="26.0" prefWidth="408.0" promptText="Sons" visibleRowCount="5">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="cachorro" />
+                        <String fx:value="sirene" />
+                        <String fx:value="toctoc" />
+                        <String fx:value="cavalo" />
+                        <String fx:value="aparicao" />
+                    </FXCollections>
+                </items>
+            </ComboBox>
+            <Button fx:id="ocultar" layoutX="321.0" layoutY="14.0" mnemonicParsing="false" onAction="#chamar" prefHeight="25.0" prefWidth="121.0" text="Ocultar" />
+
+<!--            <CheckBox layoutX="71.0" layoutY="138.0" mnemonicParsing="false" text="Salvar ip?" />-->
 <!--            <TextArea fx:id="texto" layoutX="71.0" layoutY="92.0" prefHeight="44.0" prefWidth="408.0" />-->
 
          </children>

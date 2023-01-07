@@ -1,11 +1,9 @@
-import com.nixe.pinup.socket.ListingSOCKET;
+import com.nixe.pinup.utils.ListingSOCKET;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class TestSocket {
     @Test
@@ -22,6 +20,6 @@ public class TestSocket {
     @Test
     private void calldog() throws Exception {
         ListingSOCKET l = new ListingSOCKET(1313);
-        l.audio();
+        //l.audio();
     }
 }

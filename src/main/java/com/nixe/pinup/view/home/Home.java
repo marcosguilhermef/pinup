@@ -1,38 +1,83 @@
 package com.nixe.pinup.view.home;
-import com.nixe.pinup.socket.CallSOCKET;
-import com.nixe.pinup.socket.ListingSOCKET;
-import com.nixe.pinup.socket.ServiceListing;
+import com.nixe.pinup.utils.CallSOCKET;
+import com.nixe.pinup.utils.ListingInCackground;
+import com.nixe.pinup.utils.ListingSOCKET;
+import com.nixe.pinup.utils.ServiceListing;
 import javafx.concurrent.Service;
-import javafx.concurrent.Task;
-import javafx.concurrent.WorkerStateEvent;
+import javafx.concurrent.Worker;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+
+import java.awt.event.InputEvent;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-public class Home {
+import javafx.scene.web.WebView;
+import javafx.stage.Stage;
+import javafx.stage.Window;
+
+public class Home{
+
 
     @FXML
-    TextField ip;
+    MenuItem sair, sobre;
     @FXML
-    Button sinalizar;
-    @FXML
-    Menu sair;
-    @FXML
-    Menu sobre;
-    @FXML
-    Button abrir_conexao;
+    Button abrir_conexao, sinalizar, ocultar;
 
     ListingSOCKET server;
     @FXML
     Label status;
     @FXML
-    TextField port;
+    TextField port, ip;
     @FXML
     TextArea texto;
+    @FXML
+    ComboBox<String> sons;
+
+    public static String toque = "cachorro";
+
+    public void initialize() {
+        sons.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Home.this.toque = sons.getSelectionModel().getSelectedItem();
+            }
+        });
+
+        sobre.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                System.out.println("Clicou");
+                Alert alert = new Alert(
+                        Alert.AlertType.NONE
+                        );
+
+                alert.setTitle("Aviso!");
+                WebView webView = new WebView();
+                webView.setPrefSize(500,125);
+                webView.getEngine().loadContent("<body bgcolor=\"#f6f6f6\">" +
+                        "<p align=\"justified\">\n" +
+                        "Este aplicativo não pode ser distribuído comercialmente sem autorização previa. Para mais informações sobre termos e licenças, entre em contato por: <br>" +
+                        "Email: <a href=\"contato@mgjobs.cf\">contato@mgjobs.cf</a><br>" +
+                        "Github: <a href=\"https://github.com/marcosguilhermef\">marcosguilhermef</a>" +
+                        "</p></body>");
+
+
+                Window window = alert.getDialogPane().getScene().getWindow();
+                window.setOnCloseRequest(e -> alert.hide());
+
+                alert.getDialogPane().setContent(webView);;
+                alert.showAndWait();
+
+                //alert.show();
+            }
+        });
+
+    }
     public void sair(){
 
     }
@@ -76,6 +121,7 @@ public class Home {
             );
         });
 
+        task.start();
 
     }
 
@@ -114,6 +160,10 @@ public class Home {
                     ip.getText(),
                     Integer.valueOf(port.getText())
             );
+
+    }
+
+    public void escolherSons(){
 
     }
 }

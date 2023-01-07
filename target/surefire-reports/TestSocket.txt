@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: TestSocket
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.35 s <<< FAILURE! - in TestSocket
+initCliente(TestSocket)  Time elapsed: 0.007 s  <<< FAILURE!
+java.net.ConnectException: Conexão recusada (Connection refused)
+	at TestSocket.initCliente(TestSocket.java:15)
+
+testSocket(TestSocket)  Time elapsed: 0 s  <<< FAILURE!
+java.net.BindException: Endereço já em uso (Bind failed)
+	at TestSocket.testSocket(TestSocket.java:11)
+

@@ -7,6 +7,9 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 
+import java.awt.*;
+
+
 public class App extends Application {
 
     @Override
